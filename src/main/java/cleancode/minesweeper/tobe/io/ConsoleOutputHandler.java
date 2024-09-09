@@ -2,20 +2,24 @@ package cleancode.minesweeper.tobe.io;
 
 import cleancode.minesweeper.GameException;
 import cleancode.minesweeper.tobe.GameBoard;
-import cleancode.minesweeper.tobe.cell.Cell;
+import cleancode.minesweeper.tobe.cell.CellSnapshot;
+import cleancode.minesweeper.tobe.cell.CellSnapshotStatus;
+import cleancode.minesweeper.tobe.io.sign.*;
 import cleancode.minesweeper.tobe.position.CellPosition;
 
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class ConsoleOutputHandler implements OutputHandler{
+public class ConsoleOutputHandler implements OutputHandler {
+
+    private final CellSignFinder cellSignFinder = new CellSignFinder();
+
     @Override
     public void showGameStartComments() {
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         System.out.println("지뢰찾기 게임 시작!");
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
-
 
     @Override
     public void showBoard(GameBoard board) {
@@ -25,7 +29,9 @@ public class ConsoleOutputHandler implements OutputHandler{
             System.out.printf("%2d  ", row + 1);
             for (int col = 0; col < board.getColSize(); col++) {
                 CellPosition cellPosition = CellPosition.of(row, col);
-                System.out.print(board.getSign(cellPosition) + " ");
+                CellSnapshot snapshot = board.getSnapshot(cellPosition);
+                String cellSign = CellSignProvider.findCellSignFrom(snapshot);
+                System.out.print(cellSign + " ");
             }
             System.out.println();
         }
@@ -37,8 +43,7 @@ public class ConsoleOutputHandler implements OutputHandler{
                 .mapToObj(index -> (char) ('a' + index))
                 .map(Object::toString)
                 .toList();
-        String joiningAlphabets = String.join(" ", alphabets);
-        return joiningAlphabets;
+        return String.join(" ", alphabets);
     }
 
     @Override
