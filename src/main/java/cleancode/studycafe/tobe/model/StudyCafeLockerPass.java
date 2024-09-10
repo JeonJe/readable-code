@@ -1,5 +1,6 @@
 package cleancode.studycafe.tobe.model;
 
+
 public class StudyCafeLockerPass {
 
     private final StudyCafePassType passType;
@@ -16,6 +17,13 @@ public class StudyCafeLockerPass {
         return new StudyCafeLockerPass(passType, duration, price);
     }
 
+    public boolean isSamePassType(StudyCafePassType passType) {
+        return this.passType == passType;
+    }
+
+    public boolean isSameDuration(int duration) {
+        return this.duration == duration;
+    }
     public StudyCafePassType getPassType() {
         return passType;
     }
