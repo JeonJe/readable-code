@@ -59,8 +59,7 @@ public class GameBoard {
         int rowSize = getRowSize();
         int colSize = getColSize();
 
-        return cellPosition.isRowIndexMoreThanOrEqual(rowSize)
-                || cellPosition.isColIndexMoreThanOrEqual(colSize);
+        return cellPosition.isRowIndexMoreThanOrEqual(rowSize) || cellPosition.isColIndexMoreThanOrEqual(colSize);
     }
 
     public boolean isWinStatus() {
@@ -122,27 +121,20 @@ public class GameBoard {
         int rowSize = getRowSize();
         int colSize = getColSize();
 
-        long count = calculateSurroundedPositions(cellPosition, rowSize, colSize).stream()
-                .filter(this::isLandMineCellAt)
-                .count();
+        long count = calculateSurroundedPositions(cellPosition, rowSize, colSize).stream().filter(this::isLandMineCellAt).count();
 
         return (int) count;
     }
 
     private List<CellPosition> calculateSurroundedPositions(CellPosition cellPosition, int rowSize, int colSize) {
-        return RelativePosition.SURROUNDED_POSITIONS.stream()
-                .filter(cellPosition::canCalculatePositionBy)
-                .map(cellPosition::calculatePositionBy)
-                .filter(position -> position.isRowIndexLessThan(rowSize))
-                .filter(position -> position.isColIndexLessThan(colSize))
-                .toList();
+        return RelativePosition.SURROUNDED_POSITIONS.stream().filter(cellPosition::canCalculatePositionBy).map(cellPosition::calculatePositionBy).filter(position -> position.isRowIndexLessThan(rowSize)).filter(position -> position.isColIndexLessThan(colSize)).toList();
     }
 
     private void openSurroundedCells(CellPosition cellPosition) {
         Stack<CellPosition> stack = new Stack<>();
         stack.push(cellPosition);
 
-        while(!stack.isEmpty()) {
+        while (!stack.isEmpty()) {
             openAndPushCellAt(stack);
         }
     }
