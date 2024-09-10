@@ -13,10 +13,10 @@ public class ConsoleInputHandler implements InputHandler{
     @Override
     public CellPosition getCellPositionFromUser() {
         String userInput = SCANNER.nextLine();
-        int colIndex = boardIndexConverter.getSelectedColIndex(userInput);
         int rowIndex = boardIndexConverter.getSelectedRowIndex(userInput);
+        int colIndex = boardIndexConverter.getSelectedColIndex(userInput);
 
-        return CellPosition.of(colIndex, rowIndex);
+        return CellPosition.of(rowIndex, colIndex);
     }
 
     @Override
