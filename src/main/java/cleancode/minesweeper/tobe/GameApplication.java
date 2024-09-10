@@ -1,12 +1,10 @@
 package cleancode.minesweeper.tobe;
 
-import cleancode.minesweeper.asis.gamelevel.Beginner;
-import cleancode.minesweeper.asis.gamelevel.GameLevel;
-import cleancode.minesweeper.tobe.config.GameConfig;
-import cleancode.minesweeper.tobe.io.ConsoleInputHandler;
-import cleancode.minesweeper.tobe.io.ConsoleOutputHandler;
-import cleancode.minesweeper.tobe.io.InputHandler;
-import cleancode.minesweeper.tobe.io.OutputHandler;
+import cleancode.minesweeper.tobe.minsweeper.Minesweeper;
+import cleancode.minesweeper.tobe.minsweeper.gamelevel.Beginner;
+import cleancode.minesweeper.tobe.minsweeper.config.GameConfig;
+import cleancode.minesweeper.tobe.minsweeper.io.ConsoleInputHandler;
+import cleancode.minesweeper.tobe.minsweeper.io.ConsoleOutputHandler;
 
 public class GameApplication {
 
